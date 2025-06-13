@@ -12,7 +12,7 @@ Supports optional column based drawaing to simulate real lottery ticket layouts.
 ### 1. Clone and build the project
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/yhondri/LotteryNumbers
 cd LotteryNumbers
 swift build -c release
 ```
