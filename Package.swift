@@ -5,20 +5,31 @@ import PackageDescription
 
 let package = Package(
     name: "LotteryNumbers",
+    platforms: [.macOS(.v12)],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "LotteryNumbers",
-            targets: ["LotteryNumbers"]),
+        .executable(
+            name: "lotterynumbers", 
+            targets: ["LotteryNumbersTool"]
+        ),
+    ],
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.5.1")
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "LotteryNumbers"),
+            name: "LotteryNumbersCore",
+            dependencies: []
+        ),
+        .executableTarget(
+            name: "LotteryNumbersTool",
+            dependencies: [
+                "LotteryNumbersCore",
+                .product(name: "ArgumentParser", package: "swift-argument-parser")
+            ]
+        ),
         .testTarget(
             name: "LotteryNumbersTests",
-            dependencies: ["LotteryNumbers"]
+            dependencies: ["LotteryNumbersCore"]
         ),
     ]
 )
